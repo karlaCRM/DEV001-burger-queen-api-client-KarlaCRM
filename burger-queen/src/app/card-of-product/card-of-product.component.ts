@@ -1,4 +1,4 @@
-import { Component, Injectable, Input} from '@angular/core';
+import { Component, EventEmitter, Injectable, Input, Output } from '@angular/core';
 import { ProductI } from '../models/product.interface';
 import { DataServicesService } from '../service/api/data-services.service';
 import { ProductsService } from '../service/api/products.service';
@@ -12,21 +12,42 @@ import { ProductsService } from '../service/api/products.service';
 @Injectable()
 export class CardOfProductComponent {
 
-  constructor(private products: ProductsService, private dataS: DataServicesService){}
+  constructor(private products: ProductsService) { }
+
 
   @Input() breakfastForChild: ProductI[];
   @Input() mealForChild: ProductI[];
 
+  arrOfProductsClicked: object[] = []
 
-ngOnInit(){
-  console.log("prueba de que hay algo" , this.breakfastForChild)
+
+
+  @Output() 
+  eventoEnviarData = new EventEmitter<ProductI>();
+  // ngOnInit() {
+
+  // }
+
+
+  // addNewItem(id: number) {
+  //   this.idProduct.emit(id);
+  // }
+
+addItemsToParent(value:ProductI){
+  this.eventoEnviarData.emit(value)
+
 
 }
 
-  
+  // addClickedItem(id:number) {
+  //   this.breakfastForChild.forEach((item) => {
+  //     if (id === item.id) {
+  //       this.arrOfProductsClicked.push(item)
+  //     }
 
-}
-
+  //   })
+  //   return this.arrOfProductsClicked
+  // }
 
 
 

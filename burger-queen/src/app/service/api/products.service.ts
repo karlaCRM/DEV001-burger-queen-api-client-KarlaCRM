@@ -5,13 +5,22 @@ import { DataServicesService } from './data-services.service';
   providedIn: 'root'
 })
 
+
 export class ProductsService {
+
+  
 
   constructor(private dataServices: DataServicesService) { }
 
-obtainProducts(){
-  return this.dataServices.getItems();
-}
+  obtainProducts() {
+    return this.dataServices.getItems();
+  }
+
+  deleteProduct(){
+
+  }
+
+
 
 
 
